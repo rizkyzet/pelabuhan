@@ -1,0 +1,11 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/js/auth.js": "/js/auth.js",
+    "/js/dashboard.js": "/js/dashboard.js",
+    "/js/landing-page.js": "/js/landing-page.js",
+    "/css/landing-page.css": "/css/landing-page.css",
+    "/css/auth.css": "/css/auth.css",
+    "/css/dashboard.css": "/css/dashboard.css",
+    "/js/jquery.min.js": "/js/jquery.min.js"
+}

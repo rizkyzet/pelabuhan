@@ -1,0 +1,106 @@
+body {
+    background: linear-gradient(180deg, #003A85 0%, #116ADC 100%);
+    background-attachment: fixed;
+}
+
+body::before {
+    content: '';
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('/img/kapal.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    mix-blend-mode: darken;
+
+}
+
+.card-login {
+    margin: 100px auto;
+    width: 450px;
+    height: 500px;
+    border-radius: 20px;
+}
+
+.logo {
+    width: 100px;
+    height: 40px;
+}
+
+label {
+    font-family: 'Viga', sans-serif !important;
+    font-weight: bold;
+    color: #003A85;
+    font-size: 12px;
+}
+
+.btn-login {
+    border-radius: 5px;
+    background-color: #c22d37 !important;
+    font-size: 1em;
+    padding: 0.5em 1em;
+
+}
+
+.login-anchor {
+    font-size: 0.9em;
+}
+
+
+/* register */
+.card-register {
+    margin: 100px auto;
+    width: 55vmax;
+    border-radius: 20px;
+}
+
+
+
+/* verify */
+
+.card-verify {
+    font-family: 'Viga', sans-serif !important;
+    width: 40vmax;
+    margin: 100px auto;
+}
+
+.card-verify p {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: normal;
+    font-size: 0.9em;
+}
+
+.btn-kirim-v {
+    background-color: #003A85;
+    color: white;
+    border-radius: 0 !important;
+
+}
+
+.btn-kirim-v:hover {
+    color: white;
+}
+
+.btn-logout-v {
+    background-color: #c22d37;
+    color: white;
+    border-radius: 0 !important;
+    margin-left: auto !important;
+}
+
+.btn-logout-v:hover {
+    color: white;
+}
+
+
+/* reset.email */
+
+.card-email {
+    width: 30vw;
+    margin: 100px auto;
+}
