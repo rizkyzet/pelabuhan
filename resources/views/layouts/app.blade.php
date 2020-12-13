@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Viga&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/landing-page.css')}}">
+    @livewireStyles
     <title>{{config('app.name')}}</title>
 </head>
 
@@ -32,9 +33,9 @@
         </small>
     </div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    @livewireScripts
+
     <script src="{{asset('js/landing-page.js')}}"></script>
 
 

@@ -46,4 +46,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->role()->where('name', $role)->count() == 1;
     }
+
+    public function jadwal()
+    {
+        return $this->hasMany(Jadwal::class, 'user_id');
+    }
 }
