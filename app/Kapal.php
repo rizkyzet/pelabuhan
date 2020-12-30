@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Dermaga extends Model
+class Kapal extends Model
 {
-    protected $table = 'dermaga';
+    protected $table = 'kapal';
     protected $fillable = ['nama', 'slug'];
 
     public function jadwal()
     {
-        return $this->hasMany(Jadwal::class, 'dermaga_id');
+        return $this->hasMany(Jadwal::class, 'kapal_id');
     }
 }

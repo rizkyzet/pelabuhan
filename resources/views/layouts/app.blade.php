@@ -9,7 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Viga&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/landing-page.css')}}">
+
     @livewireStyles
+    @stack('midtrans')
     <title>{{config('app.name')}}</title>
 </head>
 
@@ -37,6 +39,7 @@
     @livewireScripts
 
     <script src="{{asset('js/landing-page.js')}}"></script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
 
 
 

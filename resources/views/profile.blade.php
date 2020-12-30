@@ -1,5 +1,6 @@
 @extends('dashboard/layouts/app')
 
+@section('title','Profile ')
 @section('content')
 @include('dashboard/layouts/_partials/alert')
 <div class="card">

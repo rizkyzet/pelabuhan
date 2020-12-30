@@ -67,6 +67,7 @@ Route::middleware('verified')->prefix('pimpinan')->name('pimpinan.')->group(func
 
 route::middleware('verified')->prefix('agen')->name('agen.')->group(function () {
     route::get('jadwal/create', 'JadwalController@create')->name('jadwal.create');
+    route::post('jadwal/store', 'JadwalController@store')->name('jadwal.store');
 });
 
 

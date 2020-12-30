@@ -1,7 +1,9 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="c-sidebar-brand d-lg-down-none">
         <div class="c-sidebar-brand-full">
-            <h2>PELINDO</h2>
+            <a href="/" class="text-white" style="text-decoration: none;">
+                <h2>PELINDO</h2>
+            </a>
         </div>
         <div class="c-sidebar-brand-minimized">
             <h1>P</h1>

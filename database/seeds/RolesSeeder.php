@@ -11,7 +11,7 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        $roles = collect(['user', 'admin']);
+        $roles = collect(['agen', 'admin', 'pimpinan']);
         $roles->each(function ($r) {
             \App\Role::create([
                 'name' => $r

@@ -50,6 +50,7 @@
       // Bootstrap ID
       gtag('config', 'UA-118965717-5');
     </script>
+    @stack('midtrans')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 </head>
 
@@ -75,6 +76,7 @@
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="{{asset('js/dashboard.js')}}"></script>
+
     <script>
 
     </script>
