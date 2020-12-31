@@ -51,6 +51,9 @@ Route::middleware('verified')->prefix('admin')->name('admin.')->group(function (
 
     //user
     Route::get('user', 'UserController@index')->name('user.index');
+
+    // jadwal
+    route::get('jadwal', 'JadwalController@index')->name('jadwal.index');
 });
 Route::middleware('verified')->prefix('pimpinan')->name('pimpinan.')->group(function () {
     // dermaga
@@ -62,16 +65,22 @@ Route::middleware('verified')->prefix('pimpinan')->name('pimpinan.')->group(func
 
     //user
     Route::get('user', 'UserController@index')->name('user.index');
+
+    // jadwal
+    route::get('jadwal', 'JadwalController@index')->name('jadwal.index');
 });
 
 
 route::middleware('verified')->prefix('agen')->name('agen.')->group(function () {
+    route::get('jadwal', 'JadwalController@index')->name('jadwal.index');
     route::get('jadwal/create', 'JadwalController@create')->name('jadwal.create');
     route::post('jadwal/store', 'JadwalController@store')->name('jadwal.store');
+    route::get('jadwal/{jadwal:order_id}', 'JadwalController@show')->name('jadwal.show');
 });
 
 
 Route::get('jadwal', 'JadwalController@page')->name('jadwal.page');
 
+Route::get('jadwal/cek', 'JadwalController@cek')->name('jadwal.cek');
 
 Auth::routes(['verify' => true]);

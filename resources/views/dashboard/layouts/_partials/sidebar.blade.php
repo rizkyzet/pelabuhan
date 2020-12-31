@@ -97,6 +97,13 @@
         @endcanany
 
 
+        @canany(['admin','pimpinan','agen'])
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link"
+                href="{{route(Auth::user()->role->name.'.jadwal.index')}}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-av-timer')}}"></use>
+                </svg> Jadwal</a></li>
+        @endcanany
 
     </ul>
     <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent"

@@ -70,10 +70,13 @@ class CreateJadwal extends Component
             foreach ($dermaga as $d) {
                 $cek = $d->jadwal->where('waktu_mulai', $start);
 
+
                 if ($cek->count() > 0) {
                     $data = $cek->first();
                     if ($data->status == 'pending' || $data->status == 'settlement') {
                         $status[] = ['dermaga_id' => $d->id, 'dermaga' => $d->nama, 'status' => 'booked'];
+                    } elseif ($data->status == 'expire') {
+                        $status[] = ['dermaga_id' => $d->id, 'dermaga' => $d->nama, 'status' => 'expired'];
                     } else {
                         $status[] = ['dermaga_id' => $d->id, 'dermaga' => $d->nama, 'status' => 'booking'];
                     }

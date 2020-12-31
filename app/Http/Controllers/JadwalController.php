@@ -28,6 +28,15 @@ class JadwalController extends Controller
 
     public function index()
     {
+        if (Gate::allows('agen')) {
+            $jadwal = Auth::user()->jadwal()->orderByDesc('created_at')->get();
+
+            return view('dashboard.jadwal.jadwal-agen', compact('jadwal'));
+        } else {
+            $jadwal = Jadwal::orderByDesc('created_at')->get();
+
+            return view('dashboard.jadwal.jadwal-agen', compact('jadwal'));
+        }
     }
 
     public function page()
@@ -83,7 +92,8 @@ class JadwalController extends Controller
      */
     public function show(Jadwal $jadwal)
     {
-        //
+        Gate::authorize('view', $jadwal);
+        dd($jadwal);
     }
 
     /**
@@ -118,5 +128,19 @@ class JadwalController extends Controller
     public function destroy(Jadwal $jadwal)
     {
         //
+    }
+
+    public function cek()
+    {
+        Gate::authorize('admin');
+
+        $jadwal = Jadwal::where('status', 'pending')->get();
+        $vt = new Veritrans();
+        foreach ($jadwal as $j) {
+            $dataMidtrans = $vt->status($j->order_id);
+            $j->update(['status' => $dataMidtrans->transaction_status]);
+        }
+
+        return redirect()->route(Auth::user()->role->name . '.jadwal.index');
     }
 }
