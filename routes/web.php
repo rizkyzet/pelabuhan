@@ -51,6 +51,11 @@ Route::middleware('verified')->prefix('admin')->name('admin.')->group(function (
 
     //user
     Route::get('user', 'UserController@index')->name('user.index');
+    Route::get('user/create', 'UserController@create')->name('user.create');
+    Route::post('user/store', 'UserController@store')->name('user.store');
+    Route::delete('user/{user:email}', 'UserController@destroy')->name('user.destroy');
+    Route::get('user/{user:email}/edit', 'UserController@edit')->name('user.edit');
+    Route::patch('user/{user:email}/update', 'UserController@update')->name('user.update');
 
     // jadwal
     route::get('jadwal', 'JadwalController@index')->name('jadwal.index');
@@ -65,6 +70,7 @@ Route::middleware('verified')->prefix('pimpinan')->name('pimpinan.')->group(func
 
     //user
     Route::get('user', 'UserController@index')->name('user.index');
+
 
     // jadwal
     route::get('jadwal', 'JadwalController@index')->name('jadwal.index');

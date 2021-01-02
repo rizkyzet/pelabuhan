@@ -93,7 +93,7 @@ class JadwalController extends Controller
     public function show(Jadwal $jadwal)
     {
         Gate::authorize('view', $jadwal);
-        dd($jadwal);
+        return view('dashboard.jadwal.show', compact('jadwal'));
     }
 
     /**
