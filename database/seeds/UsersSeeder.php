@@ -37,7 +37,7 @@ class UsersSeeder extends Seeder
             'alamat' => 'ciracas',
             'foto' => 'images/profile/default.png',
             'no_hp' => '0895359449377',
-            'role_id' => 3,
+            'role_id' => 2,
         ]]);
     }
 }

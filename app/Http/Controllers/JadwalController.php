@@ -50,7 +50,7 @@ class JadwalController extends Controller
      */
     public function create()
     {
-        Gate::authorize('agen');
+
         return view('dashboard.jadwal.create');
     }
 
@@ -81,7 +81,7 @@ class JadwalController extends Controller
             'status' => $midtrans->transaction_status
 
         ]);
-        return redirect()->route('agen.jadwal.create');
+        return redirect()->route('agen.jadwal.index')->with('success', 'Jadwal berhasil dibuat!');
     }
 
     /**
@@ -125,9 +125,12 @@ class JadwalController extends Controller
      * @param  \App\Jadwal  $jadwal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Jadwal $jadwal)
+    public function delete(Jadwal $jadwal)
     {
-        //
+        Gate::authorize('admin');
+        $jadwal->delete();
+
+        return  redirect()->route('admin.jadwal.index')->with('success', 'Jadwal berhasil dihapus!');
     }
 
     public function cek()
@@ -142,5 +145,17 @@ class JadwalController extends Controller
         }
 
         return redirect()->route(Auth::user()->role->name . '.jadwal.index');
+    }
+
+
+    public function print(Jadwal $jadwal)
+    {
+
+        Gate::authorize('print', $jadwal);
+        $mpdf = new \Mpdf\Mpdf;
+        $view = view('cetak.surat-keputusan', compact('jadwal'));
+        $mpdf->AddPage('L');
+        $mpdf->WriteHTML($view);
+        $mpdf->Output();
     }
 }

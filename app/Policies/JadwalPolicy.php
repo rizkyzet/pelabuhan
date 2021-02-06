@@ -104,4 +104,12 @@ class JadwalPolicy
     {
         //
     }
+
+
+    public function print(User $user, Jadwal $jadwal)
+    {
+        return $user->id === $jadwal->user_id
+            ? Response::allow()
+            : Response::deny('You do not own this data.');
+    }
 }

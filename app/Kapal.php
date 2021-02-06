@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kapal extends Model
 {
     protected $table = 'kapal';
-    protected $fillable = ['nama', 'slug'];
+    protected $fillable = ['jenis', 'slug'];
 
     public function jadwal()
     {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\ContactMail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\FacadeS\Auth;
 
@@ -28,6 +29,13 @@ Route::get('/agen', 'ProfileController@index')->name('agen')->middleware('verifi
 Route::get('/admin', 'ProfileController@index')->name('admin')->middleware('verified');;
 Route::get('/pimpinan', 'ProfileController@index')->name('pimpinan')->middleware('verified');;
 
+// Contact
+Route::get('/contact', 'ContactController@index')->name('contact.index');
+Route::post('/contact/send', 'ContactController@send')->name('contact.send');
+Route::get('/view-email', function () {
+    return new ContactMail('ini subject', 'ini message');
+});
+
 
 //profile-changePassword
 Route::get('/agen/change-password', 'ProfileController@changePassword')->name('agen.password')->middleware('verified');
@@ -39,6 +47,10 @@ Route::patch('profile/update/{type}', 'ProfileController@update')->name('profile
 
 
 Route::get('/agen/tes', 'ProfileController@tes');
+
+
+// jadwal
+route::get('jadwal/create', 'JadwalController@create')->name('jadwal.create');
 
 
 Route::middleware('verified')->prefix('admin')->name('admin.')->group(function () {
@@ -59,7 +71,30 @@ Route::middleware('verified')->prefix('admin')->name('admin.')->group(function (
 
     // jadwal
     route::get('jadwal', 'JadwalController@index')->name('jadwal.index');
+    route::get('jadwal/create', 'JadwalController@create')->name('jadwal.create');
+    route::delete('jadwal/hapus/{jadwal:order_id}', 'JadwalController@delete')->name('jadwal.delete');
+
+    // kapal
+    route::get('/kapal', 'KapalController@index')->name('kapal.index');
+    route::post('/kapal/store', 'KapalController@store')->name('kapal.store');
+    route::delete('/kapal/delete/{kapal:slug}', 'KapalController@destroy')->name('kapal.destroy');
+    route::get('/kapal/edit/{kapal:slug}', 'KapalController@edit')->name('kapal.edit');
+    route::patch('/kapal/update/{kapal:slug}', 'KapalController@update')->name('kapal.update');
+
+    //Laporan Kegiatan Kapal
+    route::get('/laporan-kegiatan-kapal', 'Laporan\JadwalController@index')->name('laporan.jadwal.index');
+    route::post('/laporan-kegiatan-kapal/cetak}', 'Laporan\JadwalController@cetak_jadwal')->name('laporan.jadwal.cetak');
+
+    //laporan Kapal
+    route::get('/laporan-kapal', 'Laporan\KapalController@index')->name('laporan.kapal.index');
+    route::post('/laporan-kapal/cetak', 'Laporan\KapalController@cetak')->name('laporan.kapal.cetak');
+    route::get('/laporan-kapal/cetak-laporan', 'Laporan\KapalController@cetak2')->name('laporan.kapal.cetak2');
+
+    //Laporan Dermaga
+    route::get('/laporan-dermaga', 'Laporan\DermagaController@index')->name('laporan.dermaga.index');
+    route::post('/laporan-dermaga/cetak', 'Laporan\DermagaController@cetak')->name('laporan.dermaga.cetak');
 });
+
 Route::middleware('verified')->prefix('pimpinan')->name('pimpinan.')->group(function () {
     // dermaga
     Route::get('dermaga', 'DermagaController@index')->name('dermaga.index');
@@ -74,6 +109,23 @@ Route::middleware('verified')->prefix('pimpinan')->name('pimpinan.')->group(func
 
     // jadwal
     route::get('jadwal', 'JadwalController@index')->name('jadwal.index');
+    route::get('jadwal/create', 'JadwalController@create')->name('jadwal.create');
+
+    // kapal
+    route::get('/kapal', 'KapalController@index')->name('kapal.index');
+
+    // laporan Kegiatan Kapal
+    route::get('/laporan-kegiatan-kapal', 'Laporan\JadwalController@index')->name('laporan.jadwal.index');
+    route::post('/laporan-kegiatan-kapal/cetak', 'Laporan\JadwalController@cetak_jadwal')->name('laporan.jadwal.cetak');
+
+    //laporan Kapal
+    route::get('/laporan-kapal', 'Laporan\KapalController@index')->name('laporan.kapal.index');
+    route::post('/laporan-kapal/cetak', 'Laporan\KapalController@cetak')->name('laporan.kapal.cetak');
+    route::get('/laporan-kapal/cetak-laporan', 'Laporan\KapalController@cetak2')->name('laporan.kapal.cetak2');
+
+    //Laporan Dermaga
+    route::get('/laporan-dermaga', 'Laporan\DermagaController@index')->name('laporan.dermaga.index');
+    route::post('/laporan-dermaga/cetak', 'Laporan\DermagaController@cetak')->name('laporan.dermaga.cetak');
 });
 
 
@@ -82,6 +134,7 @@ route::middleware('verified')->prefix('agen')->name('agen.')->group(function () 
     route::get('jadwal/create', 'JadwalController@create')->name('jadwal.create');
     route::post('jadwal/store', 'JadwalController@store')->name('jadwal.store');
     route::get('jadwal/{jadwal:order_id}', 'JadwalController@show')->name('jadwal.show');
+    route::get('jadwal/print/{jadwal:order_id}', 'JadwalController@print')->name('jadwal.print');
 });
 
 

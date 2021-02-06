@@ -21,6 +21,7 @@
             </td>
             <td>{{date('Y-m-d',strtotime($t['waktu_selesai']))}} &mdash;
                 <strong>{{date('H:i:s',strtotime($t['waktu_selesai']))}}</td>
+
             @foreach ($t['cek'] as $cek)
             @if ($cek['status']=='expired')
             <td><a href="" class="btn btn-sm btn-danger disabled">{{$cek['status']}}</a></td>
@@ -28,13 +29,15 @@
             <td><a href="" class="btn btn-sm btn-primary disabled">{{$cek['status']}}</a></td>
             @else
             <td>
-                <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#exampleModal"
-                    wire:click="booking('{{$t['waktu_mulai']}}','{{$cek['dermaga']}}','{{$cek['dermaga_id']}}')">
+                <button class="btn btn-sm btn-success " data-toggle="modal" data-target="#exampleModal"
+                    wire:click="booking('{{$t['waktu_mulai']}}','{{$cek['dermaga']}}','{{$cek['dermaga_id']}}')"
+                    @canany(['admin','pimpinan']) disabled @endcanany>
                     {{$cek['status']}}
                 </button>
             </td>
             @endif
             @endforeach
+
         </tr>
         @endforeach
 

@@ -3,7 +3,20 @@
 @section('title','Jadwal')
 @section('content')
 @include('dashboard/layouts/_partials/alert')
-<div class="row">
+
+@can('print',$jadwal)
+@if ($jadwal->status=='settlement')
+<div class="clearfix">
+    <a href="{{route('agen.jadwal.print',$jadwal)}}" class="btn btn-success mb-3 float-right ">
+        <svg style="width: 15px;height:15px;">
+            <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-print')}}"></use>
+        </svg>
+        Cetak
+    </a>
+</div>
+@endif
+@endcan
+<div class="row ">
     <div class="col">
         <div class="card">
             <div class="card-header">

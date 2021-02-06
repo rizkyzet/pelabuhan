@@ -1,0 +1,51 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+
+/* NAVBAR */
+.navbar {
+    font-family: 'Viga', sans-serif;
+    background-color: #003A85 !important;
+
+}
+
+.navbar-brand {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.nav-link {
+    font-size: 15px;
+}
+
+/* JUMBOTRON */
+.jumbotron {
+    height: 70vh;
+    background-image: url('/img/jumbotron2.jpg') !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover
+}
+
+h1 {
+    font-family: 'Viga', sans-serif;
+}
+
+h1 span {
+    color: #E50816;
+}
+
+
+.row {
+    margin-top: 100px;
+}
+
+
+.footer {
+    height: 50px;
+    line-height: 50px;
+    margin-top: 150px;
+    background-color: #003A85;
+}

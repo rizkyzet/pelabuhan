@@ -90,12 +90,19 @@
 
         @canany(['admin','pimpinan'])
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link"
-                href="{{route(Auth::user()->role->name.'.dermaga.index')}}">
+                href="{{route(Auth::user()->role->name.'.kapal.index')}}">
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-boat-alt')}}"></use>
-                </svg> Dermaga</a></li>
+                </svg>Kapal</a></li>
         @endcanany
 
+        @canany(['admin','pimpinan'])
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link"
+                href="{{route(Auth::user()->role->name.'.dermaga.index')}}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-industry')}}"></use>
+                </svg> Dermaga</a></li>
+        @endcanany
 
         @canany(['admin','pimpinan','agen'])
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link"
@@ -105,6 +112,29 @@
                 </svg> Jadwal</a></li>
         @endcanany
 
+        @canany(['pimpinan','admin'])
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link"
+                href="{{route(Auth::user()->role->name.'.laporan.jadwal.index')}}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-file')}}"></use>
+                </svg>Laporan Kegiatan Kapal</a></li>
+        @endcanany
+
+        @canany(['pimpinan','admin'])
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link"
+                href="{{route(Auth::user()->role->name.'.laporan.kapal.index')}}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-file')}}"></use>
+                </svg>Laporan Kapal</a></li>
+        @endcanany
+
+        @canany(['pimpinan','admin'])
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link"
+                href="{{route(Auth::user()->role->name.'.laporan.dermaga.index')}}">
+                <svg class="c-sidebar-nav-icon">
+                    <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-file')}}"></use>
+                </svg>Laporan Dermaga</a></li>
+        @endcanany
     </ul>
     <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent"
         data-class="c-sidebar-minimized"></button>

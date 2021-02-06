@@ -52,6 +52,7 @@
     </script>
     @stack('midtrans')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    @stack('bottom-css')
 </head>
 
 <body class="c-app">
@@ -72,14 +73,12 @@
         </div>
     </div>
 
-
+    @livewireScripts
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="{{asset('js/dashboard.js')}}"></script>
+    @stack('bottom-js')
 
-    <script>
-
-    </script>
 </body>
 
 </html>

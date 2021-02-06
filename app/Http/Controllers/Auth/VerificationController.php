@@ -48,6 +48,8 @@ class VerificationController extends Controller
             return '/admin';
         } elseif (Auth::user()->hasRole('agen')) {
             return '/agen';
-        }
+        } else {
+            return '/pimpinan';
+        };
     }
 }

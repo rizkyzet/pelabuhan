@@ -8,10 +8,14 @@
         <div class="container justify-content-center">
             <div class="navbar-nav">
 
-                <a href="" class="nav-link">Profile</a>
-                <a href="" class="nav-link">About</a>
-                <a href="" class="nav-link">Contact</a>
-                <a href="{{route('jadwal.page')}}" class="nav-link">Jadwal</a>
+                <a href="{{route('home')}}" class="nav-link">Profile</a>
+                <a href="{{route('contact.index')}}" class="nav-link">Contact</a>
+
+                @if(Auth::check())
+                <a href="{{route(Auth::user()->role->name.'.jadwal.create')}}" class="nav-link">Jadwal</a>
+                @else
+                <a href="{{route('jadwal.create')}}" class="nav-link">Jadwal</a>
+                @endif
             </div>
         </div>
 
@@ -30,9 +34,11 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     @if (Auth::user()->hasRole('agen'))
-                    <a href="{{route('agen')}}" class="dropdown-item">Dashboard Agen</a>
+                    <a href="{{route('agen')}}" class="dropdown-item">Halaman Agen</a>
                     @elseif(Auth::user()->hasRole('admin'))
                     <a href="{{route('admin')}}" class="dropdown-item">Dashboard Admin</a>
+                    @elseif(Auth::user()->hasRole('pimpinan'))
+                    <a href="{{route('pimpinan')}}" class="dropdown-item">Dashboard Pimpinan</a>
                     @endif
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();">

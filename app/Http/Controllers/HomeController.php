@@ -21,6 +21,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+
+        // dd(\Carbon\CarbonInterval::days(1)->cascade()->total('hours'));
         return view('landing-page');
     }
 }

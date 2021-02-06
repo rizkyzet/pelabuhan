@@ -14,7 +14,39 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.dashboard');
+        $bulan = 1;
+        $jumlahUser = [];
+        while ($bulan <= 12) {
+            $user = \App\User::whereMonth('created_at', $bulan)->whereYear('created_at', date('Y'))->count();
+            $jumlahUser[] = $user;
+            $bulan++;
+        };
+
+        $bulan = 1;
+        $jumlahDermaga = [];
+        while ($bulan <= 12) {
+            $dermaga = \App\Dermaga::whereMonth('created_at', $bulan)->whereYear('created_at', date('Y'))->count();
+            $jumlahDermaga[] = $dermaga;
+            $bulan++;
+        };
+        $bulan = 1;
+        $jumlahDermaga = [];
+        while ($bulan <= 12) {
+            $dermaga = \App\Dermaga::whereMonth('created_at', $bulan)->whereYear('created_at', date('Y'))->count();
+            $jumlahDermaga[] = $dermaga;
+            $bulan++;
+        };
+        $bulan = 1;
+        $jumlahJadwal = [];
+        while ($bulan <= 12) {
+            $jadwal = \App\Jadwal::where('status', 'settlement')->whereMonth('waktu_mulai', $bulan)->whereYear('waktu_mulai', date('Y'))->count();
+            $jumlahJadwal[] = $jadwal;
+            $bulan++;
+        };
+
+
+
+        return view('dashboard.dashboard', ['jumlahUser' => json_encode($jumlahUser), 'jumlahDermaga' => json_encode($jumlahDermaga), 'jumlahJadwal' => json_encode($jumlahJadwal)]);
     }
 
     /**

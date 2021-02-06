@@ -98,9 +98,9 @@ class DermagaController extends Controller
         $dermaga->update($attr);
 
         if ($dermaga->wasChanged()) {
-            return redirect()->route('dermaga.index')->with('success', 'Data dermaga berhasil diubah!');
+            return redirect()->route(Auth::user()->role->name . '.dermaga.index')->with('success', 'Data dermaga berhasil diubah!');
         } else {
-            return redirect()->route('dermaga.index');
+            return redirect()->route(Auth::user()->role->name . '.dermaga.index');
         }
     }
 
@@ -115,6 +115,6 @@ class DermagaController extends Controller
         Gate::authorize('admin');
         $dermaga->delete();
 
-        return redirect()->route('dermaga.index')->with('success', 'Data dermaga berhasil dihapus!');
+        return redirect()->route(Auth::user()->role->name . '.dermaga.index')->with('success', 'Data dermaga berhasil dihapus!');
     }
 }

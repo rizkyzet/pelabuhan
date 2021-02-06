@@ -14,13 +14,13 @@
             <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-menu')}}"></use>
         </svg>
     </button>
-    <ul class="c-header-nav d-md-down-none">
+    {{-- <ul class="c-header-nav d-md-down-none">
         <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Dashboard</a></li>
         <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Users</a></li>
         <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Settings</a></li>
-    </ul>
+    </ul> --}}
     <ul class="c-header-nav ml-auto mr-4">
-        <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
+        {{-- <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
                 <svg class="c-icon">
                     <use xlink:href="coreui/vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
                 </svg></a></li>
@@ -31,44 +31,104 @@
         <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
                 <svg class="c-icon">
                     <use xlink:href="coreui/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-                </svg></a></li>
+                </svg></a></li> --}}
         <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#"
                 role="button" aria-haspopup="true" aria-expanded="false">
                 <div class="c-avatar"><img class="c-avatar-img" src="{{asset('storage/'.Auth::user()->foto)}}"
                         alt="user@email.com"></div>
             </a>
             <div class="dropdown-menu dropdown-menu-right pt-0">
-                <div class="dropdown-header bg-light py-2"><strong>Account</strong></div><a class="dropdown-item"
-                    href="#">
+                <div class="dropdown-header bg-light py-2"><strong>Account</strong></div>
+
+                @if(Auth::user()->role->name=='admin')
+                <a class="dropdown-item" href="{{route('admin')}}">
                     <svg class="c-icon mr-2">
-                        <use xlink:href="/coreui/vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-                    </svg> Updates<span class="badge badge-info ml-auto">42</span></a><a class="dropdown-item" href="#">
+                        <use xlink:href="/coreui/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                    </svg> My Profile</a>
+                </a>
+                @elseif(Auth::user()->role->name=='agen')
+                <a class="dropdown-item" href="{{route('agen')}}">
                     <svg class="c-icon mr-2">
-                        <use xlink:href="coreui/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-                    </svg> Messages<span class="badge badge-success ml-auto">42</span></a><a class="dropdown-item"
-                    href="#">
+                        <use xlink:href="/coreui/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                    </svg> My Profile</a><a class="dropdown-item" href="{{route('agen')}}">
+                </a>
+                @elseif(Auth::user()->role->name=='pimpinan')
+                <a class="dropdown-item" href="{{route('pimpinan')}}">
                     <svg class="c-icon mr-2">
-                        <use xlink:href="coreui/vendors/@coreui/icons/svg/free.svg#cil-task"></use>
-                    </svg> Tasks<span class="badge badge-danger ml-auto">42</span></a><a class="dropdown-item" href="#">
+                        <use xlink:href="/coreui/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                    </svg> My Profile</a><a class="dropdown-item" href="{{route('pimpinan')}}">
+                </a>
+                @endif
+
+                <a class="dropdown-item" href="{{route(Auth::user()->role->name.'.password')}}">
                     <svg class="c-icon mr-2">
-                        <use xlink:href="coreui/vendors/@coreui/icons/svg/free.svg#cil-comment-square"></use>
-                    </svg> Comments<span class="badge badge-warning ml-auto">42</span></a>
-                <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div><a class="dropdown-item"
-                    href="#">
+                        <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-lock-locked')}}">
+                        </use>
+                    </svg> Ubah Password</a>
+                </a>
+                <div class="dropdown-header bg-light py-2"><strong>{{ucwords(Auth::user()->role->name)}}</strong>
+                </div>
+
+                @canany(['admin','pimpinan'])
+                <a class="dropdown-item" href="{{route(Auth::user()->role->name.'.user.index')}}">
                     <svg class="c-icon mr-2">
-                        <use xlink:href="coreui/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-                    </svg> Profile</a><a class="dropdown-item" href="#">
+                        <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-people')}}"></use>
+                    </svg> Users</a>
+                </a>
+                @endcanany
+
+                @canany(['admin','pimpinan'])
+                <a class="dropdown-item" href="{{route(Auth::user()->role->name.'.kapal.index')}}">
                     <svg class="c-icon mr-2">
-                        <use xlink:href="coreui/vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-                    </svg> Settings</a><a class="dropdown-item" href="#">
+                        <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-boat-alt')}}"></use>
+                    </svg> Kapal</a>
+                </a>
+                @endcanany
+
+                @canany(['admin','pimpinan'])
+                <a class="dropdown-item" href="{{route(Auth::user()->role->name.'.dermaga.index')}}">
                     <svg class="c-icon mr-2">
-                        <use xlink:href="coreui/vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
-                    </svg> Payments<span class="badge badge-secondary ml-auto">42</span></a><a class="dropdown-item"
-                    href="#">
+                        <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-industry')}}">
+                        </use>
+                    </svg> Dermaga</a>
+                </a>
+                @endcanany
+
+                @canany(['admin','pimpinan','agen'])
+                <a class="dropdown-item" href="{{route(Auth::user()->role->name.'.jadwal.index')}}">
                     <svg class="c-icon mr-2">
-                        <use xlink:href="coreui/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
-                    </svg> Projects<span class="badge badge-primary ml-auto">42</span></a>
-                <div class="dropdown-divider"></div>
+                        <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-av-timer')}}">
+                        </use>
+                    </svg> Jadwal</a>
+                </a>
+                @endcanany
+
+                @canany(['admin','pimpinan'])
+                <div class="dropdown-header bg-light py-2">
+                    <strong>{{ucwords(Auth::user()->role->name)}}</strong>
+                </div>
+                <a class="dropdown-item" href="{{route(Auth::user()->role->name.'.laporan.jadwal.index')}}">
+                    <svg class=" c-icon mr-2">
+                        <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-file')}}"></use>
+                    </svg> Laporan Kegiatan Kapal
+                </a>
+
+                <a class="dropdown-item" href="{{route(Auth::user()->role->name.'.laporan.dermaga.index')}}">
+                    <svg class=" c-icon mr-2">
+                        <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-file')}}"></use>
+                    </svg> Laporan Dermaga
+                </a>
+
+                <a class="dropdown-item" href="{{route(Auth::user()->role->name.'.laporan.kapal.index')}}">
+                    <svg class=" c-icon mr-2">
+                        <use xlink:href="{{asset('coreui/vendors/@coreui/icons/svg/free.svg#cil-file')}}"></use>
+                    </svg> Laporan Kapal
+                </a>
+
+                @endcanany
+
+                <div class=" dropdown-divider">
+                </div>
 
 
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
